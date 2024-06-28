@@ -7,9 +7,11 @@ router = APIRouter()
 
 class IDGenerator:
     def __init__(self, models: list[Type[BaseModel]]):
+        """Pass the Model Classes you wish to generate IDs for in the constructor"""
         self._counters: Dict[str, int] = {model.__name__: 0 for model in models}
 
     def next_id(self, model: Type[BaseModel]) -> int:
+        """Generate the next ID for a Model. Must be a Model passed in at instantiation"""
         model_name = model.__name__
         if model_name not in self._counters:
             raise ValueError(
@@ -45,6 +47,6 @@ def get_item(
 @router.post("/items")
 def create_item(item: Item):
     new_id = id_generator.next_id(Item)
-    new_item = Item(new_id, **item.model_dump(exclude_unset=True))
+    new_item = Item(new_id, **item.model_dump(exclude={"id"}))
     items_db.append(new_item)
     return new_item
