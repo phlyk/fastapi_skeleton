@@ -1,6 +1,10 @@
 # FastAPI skeleton with in-memory DB
 In the [reference_endpoints file](app/reference_endpoints.py) you will find 2 GET endpoints and 1 POST endpoint for an Item entity.
 
+## Running the server
+Executing `fastapi dev main.py` will run the local development server.
+
+## In case you don't know FastAPI
 Each endpoint shows a few key things you'll need for the challenge:
 - `GET "/"` shows the top-level routing and dictionary response
 - `GET "/items/{item_id}` shows parameter extraction from a path and an optional HTTP query_string
