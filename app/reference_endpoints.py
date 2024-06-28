@@ -6,7 +6,7 @@ router = APIRouter()
 
 
 class IDGenerator:
-    def __init__(self, models: list[Type[BaseModel]]):
+    def __init__(self, models: List[Type[BaseModel]]):
         """Pass the Model Classes you wish to generate IDs for in the constructor"""
         self._counters: Dict[str, int] = {model.__name__: 0 for model in models}
 

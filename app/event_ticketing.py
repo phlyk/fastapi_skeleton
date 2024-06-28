@@ -1,3 +1,4 @@
+from typing import List
 from fastapi import APIRouter
 from pydantic import BaseModel
 
@@ -11,3 +12,5 @@ class Event(BaseModel):
 
 
 id_generator = IDGenerator([Event])
+
+events_db: List[Event] = []
