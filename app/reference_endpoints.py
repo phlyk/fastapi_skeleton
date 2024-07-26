@@ -31,12 +31,12 @@ id_generator = IDGenerator([Item])
 items_db: List[Item] = []
 
 
-@router.get("/")
+@router.get("/", include_in_schema=False)
 def read_root():
     return {"Hello": "World"}
 
 
-@router.get("/items/{item_id}")
+@router.get("/items/{item_id}", include_in_schema=False)
 def get_item(
     item_id: int,
     query_string: str | None = Query(None, alias="item-query"),
@@ -44,7 +44,7 @@ def get_item(
     return {"item_id": item_id, "q": query_string}
 
 
-@router.post("/items")
+@router.post("/items", include_in_schema=False)
 def create_item(item: Item):
     new_id = id_generator.next_id(Item)
     new_item = Item(new_id, **item.model_dump(exclude={"id"}))
